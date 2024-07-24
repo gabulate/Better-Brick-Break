@@ -17,11 +17,6 @@ public class BallScript : MonoBehaviour
     [SerializeField]
     private float AntiStuckCounter = 0.1f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartBalling(new Vector2(0.3f, 0.7f));          
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -44,7 +39,11 @@ public class BallScript : MonoBehaviour
         lastPos = transform.position;
     }
 
-    
+    public void Recall()
+    {
+        BallThrower.Instance.enabledBalls--;
+        gameObject.SetActive(false);
+    }
 
     public void StartBalling(Vector2 direction)
     {

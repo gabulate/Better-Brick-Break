@@ -5,8 +5,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
+    [Header("Play Area")]
     public SpriteRenderer playArea;
     public Vector2 gridSize;
+
+    [Header("Game")]
+    public static bool canThrow = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +27,13 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        SetCameraSize();    
+        SetPlayableArea();    
     }
 
-    private void SetCameraSize()
+    private void SetPlayableArea()
     {
         playArea.transform.localScale = new Vector3(BlockGrid.hSize, BlockGrid.vSize + 2, 1);
+        BallThrower.Instance.transform.position = new Vector3(0, (-BlockGrid.vSize / 2) -0.5f, 0);
         Camera cam = Camera.main;
 
         float w = playArea.bounds.size.x;
@@ -40,5 +47,13 @@ public class GameManager : MonoBehaviour
         cam.transform.position = new Vector3(playArea.transform.position.x, playArea.transform.position.y, -10);
 
         Debug.Log("Set camera size to: x:" + w + " y: " + h + "\nCamera size: "+ cam.orthographicSize);
+    }
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Destroy(gameObject);
     }
 }

@@ -63,6 +63,8 @@
     <Compile Include="Assets\Code\BlockGrid.cs" />
     <Compile Include="Assets\Code\AssetsHolder.cs" />
     <Compile Include="Assets\Code\Helper.cs" />
+    <Compile Include="Assets\Code\BallThrower.cs" />
+    <Compile Include="Assets\Code\RecallArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
