@@ -385,6 +385,10 @@ PrefabInstance:
       propertyPath: ballVisual
       value: 
       objectReference: {fileID: 612288861}
+    - target: {fileID: 4376433887518648706, guid: f83c96eb996872e46a6eb3772c766162, type: 3}
+      propertyPath: ballPickUpPrefab
+      value: 
+      objectReference: {fileID: 4488421805463361145, guid: 70f599f7b5f97dc419865a22a0bb6710, type: 3}
     - target: {fileID: 4376433887518648707, guid: f83c96eb996872e46a6eb3772c766162, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -610,15 +614,19 @@ PrefabInstance:
       objectReference: {fileID: 953294016}
     - target: {fileID: 9071644014168484093, guid: 7c4db2d98239c95479aeff6bf0141168, type: 3}
       propertyPath: gridSize.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9071644014168484093, guid: 7c4db2d98239c95479aeff6bf0141168, type: 3}
-      propertyPath: gridSize.y
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9071644014168484093, guid: 7c4db2d98239c95479aeff6bf0141168, type: 3}
-      propertyPath: maxBlocksPerRow
+      propertyPath: gridSize.y
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071644014168484093, guid: 7c4db2d98239c95479aeff6bf0141168, type: 3}
+      propertyPath: extraBallChance
+      value: 0.571
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071644014168484093, guid: 7c4db2d98239c95479aeff6bf0141168, type: 3}
+      propertyPath: maxBlocksPerRow
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c4db2d98239c95479aeff6bf0141168, type: 3}

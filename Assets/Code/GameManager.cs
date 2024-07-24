@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     public static bool canThrow = true;
     public int maxBlockValue = 2;
     public int maxBlocksPerRow = 4;
+    [Range(0, 1)]
+    public float extraBallChance = 0.3f;
+
+    public int extraBallsNextTurn = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +35,8 @@ public class GameManager : MonoBehaviour
         BlockGrid.Instance.MoveBlocksDown();
         maxBlockValue++;
         BlockGrid.Instance.SpawnRow(maxBlockValue, maxBlocksPerRow);
+        BallThrower.Instance.currentBalls += extraBallsNextTurn;
+        extraBallsNextTurn = 0;
     }
 
     private void OnGameLost()

@@ -47,6 +47,12 @@ public class BlockGrid : MonoBehaviour
 
     internal void SpawnRow(int maxValue, int maxBlocks)
     {
+        float ballChance = Random.Range(0, 1f);
+        if (ballChance <= GameManager.Instance.extraBallChance)
+        {
+            SpawnBallPickUp(Random.Range(0, hSize), 0);
+        }
+
         for (int i = 0; i < maxBlocks; i++)
         {
             int cellX = Random.Range(0, hSize);
@@ -55,6 +61,24 @@ public class BlockGrid : MonoBehaviour
                 SpawnBlock(cellX, 0, Random.Range(1, maxValue));
             }
         }
+    }
+
+    private void SpawnBallPickUp(int x, int y)
+    {
+        if (IsCellOcuppied(x, y))
+        {
+            Debug.LogWarning("Tried to spawn on an occupied cell!\nCell: x:" + x + ", y:" + y);
+            return;
+        }
+
+        //Spawn block
+        GameObject g = Instantiate(AssetsHolder.Instance.ballPickUpPrefab, GridToPosition(x, y), Quaternion.identity, transform);
+        Block bs = g.GetComponent<Block>();
+        int[] pos = { x, y };
+        bs.SetBlock(1, pos);
+
+        //Set value to grid
+        grid[x, y].block = bs;
     }
 
     public void SpawnBlock(int x, int y, int number)
@@ -82,6 +106,12 @@ public class BlockGrid : MonoBehaviour
         {
             if (IsCellOcuppied(i, vSize - 1))
             {
+                if(grid[i, vSize-1].block.GetType() == typeof(BallPickUp)) //If the block is actually a ball pickup don't lose
+                {
+                    grid[i, vSize - 1].block.BreakBlock();
+                    continue;
+                }
+
                 GameEvents.e_gameLost.Invoke();
                 MoveFinalBlocksDown();
                 return;

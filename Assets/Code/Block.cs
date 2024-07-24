@@ -14,7 +14,7 @@ public class Block : MonoBehaviour
 
     public int[] gridPosition;
 
-    public void SetBlock(int number, int[] gridPosition)
+    public virtual void SetBlock(int number, int[] gridPosition)
     {
         this.gridPosition = gridPosition;
         this.number = number;
@@ -32,10 +32,10 @@ public class Block : MonoBehaviour
             SetBlock(number, gridPosition);
     }
 
-    private void BreakBlock()
+    public void BreakBlock()
     {
         GameEvents.e_blockBroke.Invoke(gridPosition[0], gridPosition[1]);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     public IEnumerator MovePosition(Vector3 position, float seconds)
