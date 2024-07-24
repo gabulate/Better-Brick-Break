@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class BallThrower : MonoBehaviour
     public static bool isThrowing = false;
     public int currentBalls = 1;
 
-    public int totalBalls = 20;
+    public int totalPooledBalls = 0;
     public int initialBalls = 20;
     public bool Expandable = false;
     public int maximumLenght = 30;
@@ -27,32 +28,59 @@ public class BallThrower : MonoBehaviour
 
     private void Start()
     {
+        totalPooledBalls = 0;
+
         balls = new List<BallScript>();
         for (int i = 0; i < initialBalls; i++)
         {
             GameObject obj = Instantiate(AssetsHolder.Instance.ballPrefab);
             obj.SetActive(false);
             balls.Add(obj.GetComponent<BallScript>());
+            totalPooledBalls++;
         }
+    }
+
+    public void MovePosition(float newPosition)
+    {
+        transform.position = new Vector3(
+            newPosition,
+            transform.position.y, 
+            transform.position.z);
     }
 
     public void StartThrowing(Vector2 direction)
     {
-        Debug.Log("Threw!");
-        StartCoroutine(ThrowBalls(direction));
+        if (!GameManager.canThrow)
+            return;
+
+        if (direction.magnitude < 0.1)
+        {
+            direction.y = 1;
+            direction.x = 0;
+        }
+
+        StartCoroutine(ThrowBalls(direction, transform.position));
+        GameEvents.e_StartedThrowing.Invoke(currentBalls);
+
+        GameManager.canThrow = false;
     }
 
-    private IEnumerator ThrowBalls(Vector2 direction)
+    private IEnumerator ThrowBalls(Vector2 direction, Vector3 position)
     {
         for (int i = 0; i < currentBalls; i++)
         {
             BallScript ball = GetBall();
-            ball.transform.position = transform.position;
+            ball.transform.position = position;
             ball.gameObject.SetActive(true);
             enabledBalls++;
             ball.StartBalling(direction);
             yield return new WaitForSeconds(secsBetween);
         }
+    }
+
+    private void EnableThrowing()
+    {
+        GameManager.canThrow = true;
     }
 
     public BallScript GetBall()
@@ -71,10 +99,20 @@ public class BallThrower : MonoBehaviour
             obj.SetActive(false);
             BallScript ball = obj.GetComponent<BallScript>();
             balls.Add(ball);
-            totalBalls++;
+            totalPooledBalls++;
             return ball;
         }
 
         return null;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.e_StoppedRecalling.AddListener(EnableThrowing);
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.e_StoppedRecalling.RemoveListener(EnableThrowing);
     }
 }

@@ -8,6 +8,7 @@ public class AssetsHolder : MonoBehaviour
     public Gradient bColors;
     public GameObject blockPrefab;
     public GameObject ballPrefab;
+    public GameObject ballVisual;
 
     private void Awake()
     {

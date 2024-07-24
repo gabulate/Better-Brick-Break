@@ -12,17 +12,15 @@ public class Block : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _sprite;
 
-    public void SetBlock(int number)
+    public int[] gridPosition;
+
+    public void SetBlock(int number, int[] gridPosition)
     {
+        this.gridPosition = gridPosition;
         this.number = number;
         _text.text = number.ToString();
 
         _sprite.color = AssetsHolder.Instance.bColors.Evaluate(number / 15f).gamma;
-    }
-
-    private void Start()
-    {
-        SetBlock(number);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -31,11 +29,50 @@ public class Block : MonoBehaviour
         if (number <= 0)
             BreakBlock();
         else
-            SetBlock(number);
+            SetBlock(number, gridPosition);
     }
 
     private void BreakBlock()
     {
+        GameEvents.e_blockBroke.Invoke(gridPosition[0], gridPosition[1]);
         gameObject.SetActive(false);
+    }
+
+    public IEnumerator MovePosition(Vector3 position, float seconds)
+    {
+        Vector3 previousPosition = transform.position;
+
+        float step = 1 / seconds;
+        float current = 0;
+
+        while (current < 1)
+        {
+            current += step * Time.deltaTime;
+            transform.position = Vector3.Lerp(previousPosition, position, current);
+            yield return null;
+        }
+    }
+
+    private void OnEnable()
+    {
+        transform.localScale = Vector3.zero;
+        StartCoroutine(ShowBlock(0.2f));
+    }
+
+    private IEnumerator ShowBlock(float seconds)
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        Vector3 targetSize = Vector3.one * 0.9f;
+
+        float step = 1 / seconds;
+        float current = 0;
+
+        while (current < 1)
+        {
+            current += step * Time.deltaTime;
+            transform.localScale = Vector3.Lerp(Vector3.zero, targetSize, current);
+            yield return null;
+        }
     }
 }

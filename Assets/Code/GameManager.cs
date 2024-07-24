@@ -13,21 +13,35 @@ public class GameManager : MonoBehaviour
 
     [Header("Game")]
     public static bool canThrow = true;
+    public int maxBlockValue = 2;
+    public int maxBlocksPerRow = 4;
 
     // Start is called before the first frame update
     void Start()
     {
         BlockGrid.Instance.GenerateGrid((int)gridSize.x, (int)gridSize.y);
 
-        for (int i = 0; i < gridSize.x; i++)
-        {
-            for (int j = 0; j < gridSize.y; j++)
-            {
-                BlockGrid.Instance.SpawnBlock(i, j, 5);
-            }
-        }
-        
+        BlockGrid.Instance.SpawnRow(maxBlockValue, maxBlocksPerRow);
+
         SetPlayableArea();    
+    }
+
+    private void OnStoppedRecalling()
+    {
+        BlockGrid.Instance.MoveBlocksDown();
+        maxBlockValue++;
+        BlockGrid.Instance.SpawnRow(maxBlockValue, maxBlocksPerRow);
+    }
+
+    private void OnGameLost()
+    {
+        Debug.Log("Game Lost!");
+        canThrow = false;
+    }
+
+    private void OnStartedThrowing(int arg0)
+    {
+        //throw new NotImplementedException();
     }
 
     private void SetPlayableArea()
@@ -55,5 +69,19 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else if (Instance != this)
             Destroy(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.e_StartedThrowing.AddListener(OnStartedThrowing);
+        GameEvents.e_StoppedRecalling.AddListener(OnStoppedRecalling);
+        GameEvents.e_gameLost.AddListener(OnGameLost);
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.e_StartedThrowing.RemoveListener(OnStartedThrowing);
+        GameEvents.e_StoppedRecalling.RemoveListener(OnStoppedRecalling);
+        GameEvents.e_gameLost.RemoveListener(OnGameLost);
     }
 }

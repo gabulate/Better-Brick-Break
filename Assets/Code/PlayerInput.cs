@@ -45,7 +45,14 @@ public class PlayerInput : MonoBehaviour
             // Calculate the throw direction and force
             throwDirection = startTouchPosition - endTouchPosition;
             throwDirection.Normalize();
-            throwDirection.y = Mathf.Abs(throwDirection.y);
+
+            //Checks if pointing downwards, and clamps it to either side
+            if (throwDirection.y < 0)
+            {
+                throwDirection.y = 0.1f;
+                throwDirection.x = throwDirection.x > 0 ? 0.9f : -0.9f;
+            }
+                
 
             RotateStick(throwDirection);
         }
@@ -53,8 +60,6 @@ public class PlayerInput : MonoBehaviour
         {
             BallThrower.Instance.StartThrowing(throwDirection);
         }
-
-        
     }
 
     private void CheckTouch()
@@ -77,7 +82,13 @@ public class PlayerInput : MonoBehaviour
                 // Calculate the throw direction and force
                 throwDirection = startTouchPosition - endTouchPosition;
                 throwDirection.Normalize();
-                throwDirection.y = Mathf.Abs(throwDirection.y);
+
+                //Checks if pointing downwards, and clamps it to either side
+                if (throwDirection.y < 0)
+                {
+                    throwDirection.y = 0.1f;
+                    throwDirection.x = throwDirection.x > 0 ? 0.9f : -0.9f;
+                }
 
                 RotateStick(throwDirection);
             }
@@ -95,5 +106,27 @@ public class PlayerInput : MonoBehaviour
 
         // Apply the rotation
         stick.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    private void DisableStick(int balls)
+    {
+        stick.gameObject.SetActive(false);
+    }
+
+    private void EnableStick()
+    {
+        stick.gameObject.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.e_StartedThrowing.AddListener(DisableStick);
+        GameEvents.e_StoppedRecalling.AddListener(EnableStick);
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.e_StartedThrowing.RemoveListener(DisableStick);
+        GameEvents.e_StoppedRecalling.RemoveListener(EnableStick);
     }
 }

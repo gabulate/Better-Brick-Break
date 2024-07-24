@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,18 +45,108 @@ public class BlockGrid : MonoBehaviour
         }
     }
 
+    internal void SpawnRow(int maxValue, int maxBlocks)
+    {
+        for (int i = 0; i < maxBlocks; i++)
+        {
+            int cellX = Random.Range(0, hSize);
+            if(!IsCellOcuppied(cellX, 0))
+            {
+                SpawnBlock(cellX, 0, Random.Range(1, maxValue));
+            }
+        }
+    }
+
     public void SpawnBlock(int x, int y, int number)
     {
+        if(IsCellOcuppied(x, y))
+        {
+            Debug.LogWarning("Tried to spawn on an occupied cell!\nCell: x:" + x + ", y:" + y);
+            return;
+        }
+
+        //Spawn block
         GameObject g = Instantiate(AssetsHolder.Instance.blockPrefab, GridToPosition(x, y), Quaternion.identity, transform);
-        g.GetComponent<Block>().SetBlock(number);
+        Block bs = g.GetComponent<Block>();
+        int[] pos = { x, y };   
+        bs.SetBlock(number, pos);
+
+        //Set value to grid
+        grid[x, y].block = bs;
+    }
+
+    public void MoveBlocksDown()
+    {
+        //Check if there are any blocks on the final row, if there are lose the game
+        for (int i = 0; i < hSize; i++)
+        {
+            if (IsCellOcuppied(i, vSize - 1))
+            {
+                GameEvents.e_gameLost.Invoke();
+                MoveFinalBlocksDown();
+                return;
+            }
+        }
+
+        for (int i = 0; i < hSize; i++)
+        {
+            for (int j = vSize - 1; j >= 0; j--)
+            {
+                if(IsCellOcuppied(i, j))
+                {  
+                    grid[i, j + 1].block = grid[i, j].block;
+                    StartCoroutine(grid[i, j].block.MovePosition(grid[i, j + 1].worldPos, 0.5f));
+                    grid[i, j].block.gridPosition = new int[]{ i, j + 1 };
+                    grid[i, j].block = null;
+                }
+            }
+        }
+    }
+
+    private void MoveFinalBlocksDown()
+    {
+        for (int i = 0; i < hSize; i++)
+        {
+            for (int j = vSize - 1; j >= 0; j--)
+            {
+                if (IsCellOcuppied(i, j))
+                {
+                    Vector3 targetPos = grid[i, j].worldPos;
+                    targetPos.y -= 1;
+
+                    StartCoroutine(grid[i, j].block.MovePosition(targetPos, 0.5f));
+                }
+            }
+        }
+    }
+
+    private void OnBlockBroke(int x, int y )
+    {
+        grid[x, y].block = null;
     }
 
     public Vector2 GridToPosition(int x, int y)
     {
         return grid[x, y].worldPos;
     }
+
+    public bool IsCellOcuppied(int x, int y)
+    {
+        return grid[x, y].block;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.e_blockBroke.AddListener(OnBlockBroke);
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.e_blockBroke.RemoveListener(OnBlockBroke);
+    }
 }
 
+[System.Serializable]
 public struct GridCell
 {
     public Vector2 worldPos;
