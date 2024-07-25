@@ -14,4 +14,10 @@ public class BallPickUp : Block
         GameManager.Instance.extraBallsNextTurn++;
         BreakBlock();
     }
+
+    public override void BreakBlock()
+    {
+        GameEvents.e_blockBroke.Invoke(gridPosition[0], gridPosition[1]);
+        Destroy(gameObject);
+    }
 }

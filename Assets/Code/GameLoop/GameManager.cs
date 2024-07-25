@@ -12,9 +12,15 @@ public class GameManager : MonoBehaviour
     public Vector2 gridSize;
 
     [Header("Game")]
+    public static bool gameLost = false;
     public static bool canThrow = true;
-    public int maxBlockValue = 2;
+    public float maxBlockValue = 2;
+    public int initialMaxBlockValue = 2;
+    public float difficultyScaling = 1;
     public int maxBlocksPerRow = 4;
+    public int score = 0;
+    public int maxScore = 0;
+
     [Range(0, 1)]
     public float extraBallChance = 0.3f;
 
@@ -23,25 +29,42 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameLost = false;
+        canThrow = true;
+        maxBlockValue = initialMaxBlockValue;
+        score = 0;
         BlockGrid.Instance.GenerateGrid((int)gridSize.x, (int)gridSize.y);
 
-        BlockGrid.Instance.SpawnRow(maxBlockValue, maxBlocksPerRow);
+        BlockGrid.Instance.SpawnRow((int)maxBlockValue, maxBlocksPerRow);
 
-        SetPlayableArea();    
+        SetPlayableArea(); 
+        Time.timeScale = 1;
     }
 
     private void OnStoppedRecalling()
     {
         BlockGrid.Instance.MoveBlocksDown();
-        maxBlockValue++;
-        BlockGrid.Instance.SpawnRow(maxBlockValue, maxBlocksPerRow);
+        maxBlockValue += difficultyScaling;
+        BlockGrid.Instance.SpawnRow((int)maxBlockValue, maxBlocksPerRow);
         BallThrower.Instance.currentBalls += extraBallsNextTurn;
         extraBallsNextTurn = 0;
+
+        score++;
+        GameEvents.e_scoreChanged.Invoke(score);
+        SaveSystem.csd.lastScore = score;
+
+
+        if (score > SaveSystem.csd.maxScore)
+        {
+            GameEvents.e_maxScoreChanged.Invoke(score);
+            SaveSystem.csd.maxScore = score;
+            SaveSystem.Save();
+        }
     }
 
     private void OnGameLost()
     {
-        Debug.Log("Game Lost!");
+        gameLost = true;
         canThrow = false;
     }
 
@@ -77,11 +100,20 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void OnGamePaused(bool paused)
+    {
+        if (paused)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
+    }
+
     private void OnEnable()
     {
         GameEvents.e_StartedThrowing.AddListener(OnStartedThrowing);
         GameEvents.e_StoppedRecalling.AddListener(OnStoppedRecalling);
         GameEvents.e_gameLost.AddListener(OnGameLost);
+        GameEvents.e_gamePaused.AddListener(OnGamePaused);
     }
 
     private void OnDisable()
@@ -89,5 +121,6 @@ public class GameManager : MonoBehaviour
         GameEvents.e_StartedThrowing.RemoveListener(OnStartedThrowing);
         GameEvents.e_StoppedRecalling.RemoveListener(OnStoppedRecalling);
         GameEvents.e_gameLost.RemoveListener(OnGameLost);
+        GameEvents.e_gamePaused.RemoveListener(OnGamePaused);
     }
 }

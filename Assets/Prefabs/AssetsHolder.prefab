@@ -74,5 +74,7 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   blockPrefab: {fileID: 3663757526108412497, guid: 342ee670de477c542a5e98839ded60a6, type: 3}
+  ballPickUpPrefab: {fileID: 4488421805463361145, guid: 70f599f7b5f97dc419865a22a0bb6710, type: 3}
   ballPrefab: {fileID: 7739990985551135877, guid: 61505a18e50967448a887e8db8a0f12f, type: 3}
   ballVisual: {fileID: 0}
+  destroyParticles: {fileID: 1697995364332602682, guid: bb7bb07b1f3b71e40b1074dbf622d157, type: 3}

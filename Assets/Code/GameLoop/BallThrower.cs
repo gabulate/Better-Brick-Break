@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BallThrower : MonoBehaviour
 {
     public static BallThrower Instance;
+    public TextMeshPro ballsText;
     public static bool isThrowing = false;
     public int currentBalls = 1;
+    public int remainingBalls = 1;
 
     public int totalPooledBalls = 0;
     public int initialBalls = 20;
@@ -50,7 +53,7 @@ public class BallThrower : MonoBehaviour
 
     public void StartThrowing(Vector2 direction)
     {
-        if (!GameManager.canThrow)
+        if (!GameManager.canThrow || GameManager.gameLost)
             return;
 
         if (direction.magnitude < 0.1)
@@ -67,6 +70,7 @@ public class BallThrower : MonoBehaviour
 
     private IEnumerator ThrowBalls(Vector2 direction, Vector3 position)
     {
+        remainingBalls = currentBalls;
         for (int i = 0; i < currentBalls; i++)
         {
             BallScript ball = GetBall();
@@ -74,13 +78,30 @@ public class BallThrower : MonoBehaviour
             ball.gameObject.SetActive(true);
             enabledBalls++;
             ball.StartBalling(direction);
+
+            remainingBalls--;
+            if(remainingBalls == 0)
+                ballsText.enabled = false;
+            else
+                ballsText.text = "x" + remainingBalls;
+
             yield return new WaitForSeconds(secsBetween);
         }
+
     }
 
     private void EnableThrowing()
     {
+        if(!GameManager.gameLost)
+            StartCoroutine(EnableThrowingCoroutine(0.5f));
+    }
+
+    private IEnumerator EnableThrowingCoroutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         GameManager.canThrow = true;
+        ballsText.enabled = true;
+        ballsText.text = "x" + currentBalls;
     }
 
     public BallScript GetBall()

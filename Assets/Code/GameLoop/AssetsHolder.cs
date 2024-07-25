@@ -10,6 +10,7 @@ public class AssetsHolder : MonoBehaviour
     public GameObject ballPickUpPrefab;
     public GameObject ballPrefab;
     public GameObject ballVisual;
+    public GameObject destroyParticles;
 
     private void Awake()
     {

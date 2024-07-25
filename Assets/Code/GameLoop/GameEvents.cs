@@ -9,4 +9,9 @@ public static class GameEvents
     public static UnityEvent e_StoppedRecalling = new UnityEvent();
     public static UnityEvent e_gameLost = new UnityEvent();
     public static UnityEvent<int,int> e_blockBroke = new UnityEvent<int,int>();
+
+    public static UnityEvent<int> e_scoreChanged = new UnityEvent<int>();
+    public static UnityEvent<int> e_maxScoreChanged = new UnityEvent<int>();
+    public static UnityEvent<int> e_lastScoreChanged = new UnityEvent<int>();
+    public static UnityEvent<bool> e_gamePaused = new UnityEvent<bool>();
 }

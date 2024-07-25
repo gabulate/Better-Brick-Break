@@ -45,5 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playArea: {fileID: 0}
-  gridSize: {x: 8, y: 10}
+  gridSize: {x: 6, y: 6}
   maxBlockValue: 2
+  initialMaxBlockValue: 2
+  difficultyScaling: 1
+  maxBlocksPerRow: 3
+  score: 0
+  maxScore: 0
+  extraBallChance: 0.571
+  extraBallsNextTurn: 0
