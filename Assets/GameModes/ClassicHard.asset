@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5a2d12b550f4aa49bada3636b692002, type: 3}
-  m_Name: 30x45
+  m_Name: ClassicHard
   m_EditorClassIdentifier: 
-  gridSize: {x: 30, y: 45}
+  gridSize: {x: 8, y: 10}
   initialMaxBlockValue: 2
-  difficultyScaling: 1.5
-  maxBlocksPerRow: 44
-  extraBallChance: 0.95
+  difficultyScaling: 2
+  maxBlocksPerRow: 8
+  extraBallChance: 0.7

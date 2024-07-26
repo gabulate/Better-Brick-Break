@@ -10,7 +10,7 @@ public class Block : MonoBehaviour
     [SerializeField]
     private TextMeshPro _text;
     [SerializeField]
-    private SpriteRenderer _sprite;
+    protected SpriteRenderer _sprite;
 
     public int[] gridPosition;
 
@@ -71,17 +71,20 @@ public class Block : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         transform.localScale = Vector3.zero;
+        if (AppManager.theme)
+            _sprite.sprite = AppManager.theme.blockSprite;
+
         StartCoroutine(ShowBlock(0.2f));
     }
 
-    private IEnumerator ShowBlock(float seconds)
+    protected IEnumerator ShowBlock(float seconds)
     {
         yield return new WaitForSeconds(0.4f);
 
-        Vector3 targetSize = Vector3.one * 0.9f;
+        Vector3 targetSize = Vector3.one * 0.95f;
 
         float step = 1 / seconds;
         float current = 0;

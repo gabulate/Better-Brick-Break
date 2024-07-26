@@ -14,7 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   themes:
   - {fileID: 11400000, guid: a3e9a362a180f1d479047e439049b9bf, type: 2}
+  - {fileID: 11400000, guid: bfee0e1e131f31247b76d0443a8b89e5, type: 2}
+  - {fileID: 11400000, guid: 18f4e00b34d10344d876f998f180cd15, type: 2}
   - {fileID: 11400000, guid: e8c0f090805457544a606d2d18a17794, type: 2}
+  - {fileID: 11400000, guid: 5bebe94d7dbd6e644a563072c5641734, type: 2}
+  - {fileID: 11400000, guid: 2a41c9630cc2a7e43ac21bfb0439c18c, type: 2}
+  - {fileID: 11400000, guid: 3fa714372d79d5b419c1dea0067fe907, type: 2}
+  - {fileID: 11400000, guid: 8e2383ce532c5b748a27602903c02cd4, type: 2}
+  - {fileID: 11400000, guid: d5c8adc1223cf5e4fa827525fd64e115, type: 2}
   gameModes:
   - {fileID: 11400000, guid: 1f3188c662175dc438cbad4fc5145111, type: 2}
   - {fileID: 11400000, guid: 164a33d3a3c770348bc2864a63ca898e, type: 2}

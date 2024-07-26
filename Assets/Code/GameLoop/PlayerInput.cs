@@ -20,6 +20,8 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         _cam = Camera.main;
+        if (AppManager.theme)
+            stick.GetComponentInChildren<SpriteRenderer>().color = AppManager.theme.ballColor;
     }
 
     void Update()

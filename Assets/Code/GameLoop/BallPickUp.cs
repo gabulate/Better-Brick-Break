@@ -20,4 +20,13 @@ public class BallPickUp : Block
         GameEvents.e_blockBroke.Invoke(gridPosition[0], gridPosition[1]);
         Destroy(gameObject);
     }
+
+    protected override void OnEnable()
+    {
+        transform.localScale = Vector3.zero;
+        if (AppManager.theme)
+            _sprite.color = AppManager.theme.ballColor;
+
+        StartCoroutine(ShowBlock(0.2f));
+    }
 }

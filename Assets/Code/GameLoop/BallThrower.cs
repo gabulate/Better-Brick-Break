@@ -40,7 +40,10 @@ public class BallThrower : MonoBehaviour
             obj.SetActive(false);
             balls.Add(obj.GetComponent<BallScript>());
             totalPooledBalls++;
-        }
+        }            
+
+        if(AppManager.theme)
+            ballsText.color = AppManager.theme.ballColor;
     }
 
     public void MovePosition(float newPosition)

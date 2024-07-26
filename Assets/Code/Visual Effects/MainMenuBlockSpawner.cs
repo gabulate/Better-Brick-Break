@@ -27,6 +27,7 @@ public class MainMenuBlockSpawner : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         foreach(BallScript b in FindObjectsOfType<BallScript>())
         {
             b.isBalling = true;

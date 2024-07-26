@@ -22,8 +22,12 @@ public class BallScript : MonoBehaviour
 
     private void Start()
     {
-        if(AppManager.theme)
+        if (AppManager.theme)
+        {
             _sprite.color = AppManager.theme.ballColor;
+            GetComponent<TrailRenderer>().startColor = AppManager.theme.ballColor;
+        }
+            
     }
 
     // Update is called once per frame
@@ -61,15 +65,16 @@ public class BallScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Get the normal vector of the surface the object collided with
         Vector2 surfaceNormal = collision.GetContact(0).normal;
 
         direction = Vector2.Reflect(direction, surfaceNormal).normalized;
 
-        //Avoids getting stuck
-        while(Mathf.Abs(direction.y) < 0.05)
+        // Avoid getting stuck by ensuring the direction is not too parallel to the surface
+        if (Mathf.Abs(direction.y) < 0.05f)
         {
-            direction.y *= 1.2f;
+            // Adjust the direction slightly to avoid being parallel to the surface
+            float adjustmentAngle = 10f; // Small adjustment angle in degrees
+            direction = Quaternion.Euler(0, 0, adjustmentAngle) * direction;
             direction = direction.normalized;
         }
     }

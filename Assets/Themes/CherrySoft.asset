@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6efadd566dc5ac9448d34605ad820f23, type: 3}
-  m_Name: Cherry
+  m_Name: CherrySoft
   m_EditorClassIdentifier: 
-  theme: Cherry
+  theme: CherrySoft
   backgroundColor: {r: 0.6509434, g: 0.095185116, b: 0.28777465, a: 1}
   playAreaColor: {r: 0.9339623, g: 0.7885814, b: 0.844036, a: 1}
   borderColor: {r: 0.735849, g: 0.5588287, b: 0.72862566, a: 1}
@@ -45,6 +45,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  blockSprite: {fileID: 21300000, guid: 610502eab897c33469bbc3a044966cd6, type: 3}
+  blockSprite: {fileID: 21300000, guid: 6af2ca7314bd588418e941dcdaeda611, type: 3}
   blockTextColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   ballColor: {r: 0.9056604, g: 0.2776789, b: 0.404498, a: 1}

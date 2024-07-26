@@ -77,6 +77,7 @@
     <Compile Include="Assets\Code\ScriptableObjects\ThemeSO.cs" />
     <Compile Include="Assets\Code\Visual Effects\ThemeManager.cs" />
     <Compile Include="Assets\Code\ScriptableObjects\AppAssetsSO.cs" />
+    <Compile Include="Assets\Code\GUI\ThemeOption.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

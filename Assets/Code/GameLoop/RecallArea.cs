@@ -12,6 +12,12 @@ public class RecallArea : MonoBehaviour
     private int totalBalls = 0;
     public int currentRecalledBalls = 0;
 
+    private void Start()
+    {
+        if (AppManager.theme)
+            AssetsHolder.Instance.ballVisual.GetComponent<SpriteRenderer>().color = AppManager.theme.ballColor;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isRecalling && ballLayer == (ballLayer | (1 << collision.gameObject.layer)))
