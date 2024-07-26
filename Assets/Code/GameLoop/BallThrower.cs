@@ -102,6 +102,8 @@ public class BallThrower : MonoBehaviour
         GameManager.canThrow = true;
         ballsText.enabled = true;
         ballsText.text = "x" + currentBalls;
+        ballsText.transform.position = new Vector3(transform.position.x, transform.position.y -0.4f, -1);
+
     }
 
     public BallScript GetBall()

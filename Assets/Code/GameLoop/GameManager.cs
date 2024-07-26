@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("Play Area")]
     public SpriteRenderer playArea;
     public Vector2 gridSize;
+    public Transform RecallArea;
 
     [Header("Game")]
     public static bool gameLost = false;
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SetPlaySettings();
+        if(AppManager.mode)
+            SetPlaySettings();
 
         gameLost = false;
         canThrow = true;
@@ -89,6 +91,7 @@ public class GameManager : MonoBehaviour
     {
         playArea.transform.localScale = new Vector3(BlockGrid.hSize, BlockGrid.vSize + 2, 1);
         BallThrower.Instance.transform.position = new Vector3(0, (-BlockGrid.vSize / 2) -0.5f, 0);
+        RecallArea.position = new Vector3(0, (-BlockGrid.vSize / 2) -0.5f, 0);
         Camera cam = Camera.main;
 
         float w = playArea.bounds.size.x;
