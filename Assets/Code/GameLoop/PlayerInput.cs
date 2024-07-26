@@ -61,7 +61,7 @@ public class PlayerInput : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            BallThrower.Instance.StartThrowing(throwDirection);
+            BallThrower.Instance.StartThrowing(throwDirection);           
         }
     }
 

@@ -57,11 +57,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Segoe UI SDF
+  m_Name: Segoe UI
   m_EditorClassIdentifier: 
-  hashCode: -1896870186
+  hashCode: -73955289
   material: {fileID: 4611855315620148995}
-  materialHashCode: -1930173642
+  materialHashCode: -545229657
   m_Version: 1.1.0
   m_SourceFontFileGUID: 68e4f59aece91d24794b2a9b29a3dff3
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 68e4f59aece91d24794b2a9b29a3dff3, type: 3}
@@ -2725,8 +2725,8 @@ Material:
     - _TextureHeight: 512
     - _TextureWidth: 512
     - _UnderlayDilate: 0
-    - _UnderlayOffsetX: 0
-    - _UnderlayOffsetY: 0
+    - _UnderlayOffsetX: 0.45
+    - _UnderlayOffsetY: -0.8
     - _UnderlaySoftness: 0
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
@@ -2742,5 +2742,5 @@ Material:
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+    - _UnderlayColor: {r: 0.012286487, g: 0.012286487, b: 0.012286487, a: 1}
   m_BuildTextureStacks: []

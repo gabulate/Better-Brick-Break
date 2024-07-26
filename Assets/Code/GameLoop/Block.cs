@@ -20,7 +20,19 @@ public class Block : MonoBehaviour
         this.number = number;
         _text.text = number.ToString();
 
-        _sprite.color = AssetsHolder.Instance.bColors.Evaluate(number / 15f).gamma;
+        SetColor(number);
+    }
+
+    public void SetColor(int number)
+    {
+        int colorNumber = number;
+        while (colorNumber > 64)
+            colorNumber -= 64;
+
+        _sprite.color = AssetsHolder.Instance.bColors.Evaluate(colorNumber / 64f).gamma;
+
+        if(AppManager.theme)
+            _text.color = AppManager.theme.blockTextColor;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

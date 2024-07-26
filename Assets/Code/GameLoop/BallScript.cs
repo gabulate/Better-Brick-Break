@@ -17,6 +17,14 @@ public class BallScript : MonoBehaviour
     [SerializeField]
     private float AntiStuckCounter = 0.1f;
 
+    [SerializeField]
+    private SpriteRenderer _sprite;
+
+    private void Start()
+    {
+        if(AppManager.theme)
+            _sprite.color = AppManager.theme.ballColor;
+    }
 
     // Update is called once per frame
     void FixedUpdate()

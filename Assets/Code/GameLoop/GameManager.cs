@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //SetPlaySettings();
+
         gameLost = false;
         canThrow = true;
         maxBlockValue = initialMaxBlockValue;
@@ -37,8 +39,18 @@ public class GameManager : MonoBehaviour
 
         BlockGrid.Instance.SpawnRow((int)maxBlockValue, maxBlocksPerRow);
 
+
         SetPlayableArea(); 
         Time.timeScale = 1;
+    }
+
+    private void SetPlaySettings()
+    {
+        gridSize = AppManager.mode.gridSize;
+        initialMaxBlockValue = AppManager.mode.initialMaxBlockValue;
+        difficultyScaling = AppManager.mode.difficultyScaling;
+        maxBlocksPerRow = AppManager.mode.maxBlocksPerRow;
+        extraBallChance = AppManager.mode.extraBallChance;
     }
 
     private void OnStoppedRecalling()

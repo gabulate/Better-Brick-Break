@@ -71,6 +71,12 @@
     <Compile Include="Assets\Code\GameLoop\RecallArea.cs" />
     <Compile Include="Assets\Code\AppManagers\AppManager.cs" />
     <Compile Include="Assets\Code\AppManagers\SaveData.cs" />
+    <Compile Include="Assets\Code\Visual Effects\MainMenuBlockSpawner.cs" />
+    <Compile Include="Assets\Code\GUI\MainMenuScript.cs" />
+    <Compile Include="Assets\Code\ScriptableObjects\GameModeSO.cs" />
+    <Compile Include="Assets\Code\ScriptableObjects\ThemeSO.cs" />
+    <Compile Include="Assets\Code\Visual Effects\ThemeManager.cs" />
+    <Compile Include="Assets\Code\ScriptableObjects\AppAssetsSO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
