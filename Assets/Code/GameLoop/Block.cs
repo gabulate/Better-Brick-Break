@@ -25,13 +25,15 @@ public class Block : MonoBehaviour
 
     public void SetColor(int number)
     {
-        int colorNumber = number;
-        while (colorNumber > 64)
-            colorNumber -= 64;
+        if (!AppManager.theme)
+            return;
 
-        _sprite.color = AssetsHolder.Instance.bColors.Evaluate(colorNumber / 64f).gamma;
+        float colorNumber = number;
+        while (colorNumber > AppManager.theme.maxColorAt)
+            colorNumber -= AppManager.theme.maxColorAt;
 
-        if(AppManager.theme)
+        _sprite.color = AssetsHolder.Instance.bColors.Evaluate(colorNumber / AppManager.theme.maxColorAt).gamma;
+
             _text.color = AppManager.theme.blockTextColor;
     }
 
@@ -52,6 +54,8 @@ public class Block : MonoBehaviour
         ParticleSystem.MainModule main = p.main;
         main.startColor = _sprite.color;
         p.Play();
+
+        GameManager.Instance.AddScore(1);
 
         Destroy(gameObject);
     }
@@ -95,5 +99,8 @@ public class Block : MonoBehaviour
             transform.localScale = Vector3.Lerp(Vector3.zero, targetSize, current);
             yield return null;
         }
+
+        transform.localScale = targetSize;
+
     }
 }

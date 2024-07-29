@@ -11,21 +11,25 @@ public class BallScript : MonoBehaviour
     [SerializeField]
     private Vector2 direction;
     private Vector3 lastPos;
+    public int blockBounces = 0;
 
     [SerializeField]
     private float counter = 0.1f;
     [SerializeField]
     private float AntiStuckCounter = 0.1f;
 
+    [Header("References")]
     [SerializeField]
     private SpriteRenderer _sprite;
+    [SerializeField]
+    private TrailRenderer _trail;
 
     private void Start()
     {
         if (AppManager.theme)
         {
             _sprite.color = AppManager.theme.ballColor;
-            GetComponent<TrailRenderer>().startColor = AppManager.theme.ballColor;
+            _trail.startColor = AppManager.theme.ballColor;
         }
             
     }
@@ -55,6 +59,9 @@ public class BallScript : MonoBehaviour
     {
         BallThrower.Instance.enabledBalls--;
         gameObject.SetActive(false);
+
+        GameManager.Instance.CheckMaxHits(blockBounces);
+        blockBounces = 0;
     }
 
     public void StartBalling(Vector2 direction)
@@ -77,6 +84,11 @@ public class BallScript : MonoBehaviour
             direction = Quaternion.Euler(0, 0, adjustmentAngle) * direction;
             direction = direction.normalized;
         }
+
+        if (collision.collider.gameObject.layer == 7)
+        {
+            blockBounces++;
+        }
     }
 
     private void UnStick()
@@ -84,5 +96,15 @@ public class BallScript : MonoBehaviour
         direction *= -1;
         counter = AntiStuckCounter;
         Debug.Log("Anti-Stick Triggered!");
+    }
+
+    private void OnEnable()
+    {
+        _trail.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        _trail.enabled = false;
     }
 }

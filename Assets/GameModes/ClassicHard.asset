@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a2d12b550f4aa49bada3636b692002, type: 3}
   m_Name: ClassicHard
   m_EditorClassIdentifier: 
+  gameMode: Classic Hard
   gridSize: {x: 8, y: 10}
   initialMaxBlockValue: 2
   difficultyScaling: 2

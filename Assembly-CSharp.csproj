@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{0455E23F-E241-0BE5-B118-1B13824A91A3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -61,23 +62,23 @@
     <Compile Include="Assets\Code\AppManagers\SaveSystem.cs" />
     <Compile Include="Assets\Code\Helpers\Helper.cs" />
     <Compile Include="Assets\Code\GameLoop\BallThrower.cs" />
+    <Compile Include="Assets\Code\Visual Effects\ThemeManager.cs" />
     <Compile Include="Assets\Code\GUI\GameUI.cs" />
     <Compile Include="Assets\Code\GameLoop\GameManager.cs" />
+    <Compile Include="Assets\Code\ScriptableObjects\AppAssetsSO.cs" />
     <Compile Include="Assets\Code\GameLoop\BlockGrid.cs" />
     <Compile Include="Assets\Code\GameLoop\BallScript.cs" />
+    <Compile Include="Assets\Code\GUI\ThemeOption.cs" />
     <Compile Include="Assets\Code\GameLoop\GameEvents.cs" />
     <Compile Include="Assets\Code\GameLoop\Block.cs" />
     <Compile Include="Assets\Code\GameLoop\PlayerInput.cs" />
+    <Compile Include="Assets\Code\ScriptableObjects\GameModeSO.cs" />
+    <Compile Include="Assets\Code\Visual Effects\MainMenuBlockSpawner.cs" />
     <Compile Include="Assets\Code\GameLoop\RecallArea.cs" />
+    <Compile Include="Assets\Code\ScriptableObjects\ThemeSO.cs" />
+    <Compile Include="Assets\Code\GUI\MainMenuScript.cs" />
     <Compile Include="Assets\Code\AppManagers\AppManager.cs" />
     <Compile Include="Assets\Code\AppManagers\SaveData.cs" />
-    <Compile Include="Assets\Code\Visual Effects\MainMenuBlockSpawner.cs" />
-    <Compile Include="Assets\Code\GUI\MainMenuScript.cs" />
-    <Compile Include="Assets\Code\ScriptableObjects\GameModeSO.cs" />
-    <Compile Include="Assets\Code\ScriptableObjects\ThemeSO.cs" />
-    <Compile Include="Assets\Code\Visual Effects\ThemeManager.cs" />
-    <Compile Include="Assets\Code\ScriptableObjects\AppAssetsSO.cs" />
-    <Compile Include="Assets\Code\GUI\ThemeOption.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

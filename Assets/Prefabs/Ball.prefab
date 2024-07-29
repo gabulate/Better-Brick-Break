@@ -144,6 +144,7 @@ MonoBehaviour:
   counter: 0
   AntiStuckCounter: 0.05
   _sprite: {fileID: 7739990985551135878}
+  _trail: {fileID: 1930102382722118096}
 --- !u!96 &1930102382722118096
 TrailRenderer:
   serializedVersion: 2

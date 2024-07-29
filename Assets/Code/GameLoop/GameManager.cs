@@ -13,14 +13,19 @@ public class GameManager : MonoBehaviour
     public Transform RecallArea;
 
     [Header("Game")]
+    public string gameMode;
     public static bool gameLost = false;
     public static bool canThrow = true;
     public float maxBlockValue = 2;
     public int initialMaxBlockValue = 2;
     public float difficultyScaling = 1;
     public int maxBlocksPerRow = 4;
+    
+    [Header("Stats")]
     public int score = 0;
+    public int turns = 0;
     public int maxScore = 0;
+    public int maxHitsBall = 0;
 
     [Range(0, 1)]
     public float extraBallChance = 0.3f;
@@ -31,23 +36,37 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if(AppManager.mode)
-            SetPlaySettings();
+            SetGameSettings();
 
-        gameLost = false;
-        canThrow = true;
-        maxBlockValue = initialMaxBlockValue;
-        score = 0;
+        ResetStats();
+
         BlockGrid.Instance.GenerateGrid((int)gridSize.x, (int)gridSize.y);
 
         BlockGrid.Instance.SpawnRow((int)maxBlockValue, maxBlocksPerRow);
-
 
         SetPlayableArea(); 
         Time.timeScale = 1;
     }
 
-    private void SetPlaySettings()
+    private void ResetStats()
     {
+        gameLost = false;
+        canThrow = true;
+        maxBlockValue = initialMaxBlockValue;
+        score = 0;
+        maxHitsBall = 0;
+        turns = 0;
+    }
+
+    private void SetGameSettings()
+    {
+        gameMode = AppManager.mode.gameMode;
+
+        if (!SaveSystem.csd.maxScores.Contains(gameMode))
+        {
+            SaveSystem.csd.maxScores.Add(gameMode, 0);
+        }
+
         gridSize = AppManager.mode.gridSize;
         initialMaxBlockValue = AppManager.mode.initialMaxBlockValue;
         difficultyScaling = AppManager.mode.difficultyScaling;
@@ -58,21 +77,47 @@ public class GameManager : MonoBehaviour
     private void OnStoppedRecalling()
     {
         BlockGrid.Instance.MoveBlocksDown();
-        maxBlockValue += difficultyScaling;
         BlockGrid.Instance.SpawnRow((int)maxBlockValue, maxBlocksPerRow);
+
+        maxBlockValue += difficultyScaling;
+
         BallThrower.Instance.currentBalls += extraBallsNextTurn;
         extraBallsNextTurn = 0;
 
-        score++;
-        GameEvents.e_scoreChanged.Invoke(score);
-        SaveSystem.csd.lastScore = score;
-
-
-        if (score > SaveSystem.csd.maxScore)
+        if(BallThrower.Instance.currentBalls > SaveSystem.csd.maxBalls)
         {
-            GameEvents.e_maxScoreChanged.Invoke(score);
-            SaveSystem.csd.maxScore = score;
-            SaveSystem.Save();
+            SaveSystem.csd.maxBalls = BallThrower.Instance.currentBalls;
+        }
+
+        SaveSystem.Save();
+    }
+
+    public void AddScore(int score)
+    {
+        this.score += score;
+        GameEvents.e_scoreChanged.Invoke(this.score);
+        SaveSystem.csd.lastScore = this.score;
+
+
+        if (this.score > SaveSystem.csd.maxScore)
+        {
+            SaveSystem.csd.maxScore = this.score;
+        }
+
+        if(this.score > SaveSystem.csd.maxScores.Get(gameMode))
+        {
+            GameEvents.e_maxScoreChanged.Invoke(this.score);
+            SaveSystem.csd.maxScores.UpdateValue(gameMode, this.score);
+        }
+    }
+
+    public void CheckMaxHits(int hits)
+    {
+        maxHitsBall = Mathf.Max(maxHitsBall, hits);
+
+        if (maxHitsBall > SaveSystem.csd.maxHitsBall)
+        {
+            SaveSystem.csd.maxHitsBall = maxHitsBall;
         }
     }
 
@@ -84,7 +129,12 @@ public class GameManager : MonoBehaviour
 
     private void OnStartedThrowing(int arg0)
     {
-        //throw new NotImplementedException();
+        turns++;
+
+        if(turns > SaveSystem.csd.maxTurns)
+        {
+            SaveSystem.csd.maxTurns = turns;
+        }
     }
 
     private void SetPlayableArea()

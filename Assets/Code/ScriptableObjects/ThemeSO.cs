@@ -14,6 +14,7 @@ public class ThemeSO : ScriptableObject
 
     [Header("Blocks")]
     public Gradient blockColors;
+    public float maxColorAt = 64f;
     public Sprite blockSprite;
     public Color blockTextColor = Color.black;
 

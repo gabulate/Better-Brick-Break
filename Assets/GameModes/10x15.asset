@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a2d12b550f4aa49bada3636b692002, type: 3}
   m_Name: 10x15
   m_EditorClassIdentifier: 
+  gameMode: Big (10x15)
   gridSize: {x: 10, y: 15}
   initialMaxBlockValue: 2
   difficultyScaling: 1.3

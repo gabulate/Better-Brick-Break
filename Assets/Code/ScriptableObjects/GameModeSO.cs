@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameMode", menuName = "Game Mode")]
 public class GameModeSO : ScriptableObject
 {
+    public string gameMode = "";
+
     [Header("Play Area")]
     public Vector2 gridSize;
 

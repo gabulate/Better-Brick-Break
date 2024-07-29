@@ -45,6 +45,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
+  maxColorAt: 16
   blockSprite: {fileID: 21300000, guid: 610502eab897c33469bbc3a044966cd6, type: 3}
   blockTextColor: {r: 0, g: 0, b: 0, a: 1}
   ballColor: {r: 1, g: 1, b: 1, a: 1}
