@@ -100,11 +100,10 @@ public class BallScript : MonoBehaviour
 
     private void OnEnable()
     {
-        _trail.enabled = true;
+        _trail.Clear();
     }
 
-    private void OnDisable()
-    {
-        _trail.enabled = false;
-    }
+    //private void OnDisable()
+    //{
+    //}
 }

@@ -55,7 +55,8 @@ public class Block : MonoBehaviour
         main.startColor = _sprite.color;
         p.Play();
 
-        GameManager.Instance.AddScore(1);
+        if(AppManager.mode)
+            GameManager.Instance.AddScore(1);
 
         Destroy(gameObject);
     }

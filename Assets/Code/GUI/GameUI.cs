@@ -20,7 +20,11 @@ public class GameUI : MonoBehaviour
         UpdateMaxScore(SaveSystem.csd.maxScores.Get(AppManager.mode.gameMode));
     }
 
-    public void ReturnToMenu() => SceneManager.LoadScene(0);
+    public void ReturnToMenu()
+    {
+        AppManager.mode = null;
+        SceneManager.LoadScene(0);
+    }
 
     public void Retry() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
