@@ -13,6 +13,9 @@ public class SaveData
     public List<KeyValuePair> maxScores = new List<KeyValuePair>();
 
     public string theme = "Default";
+    public float volume = 1f;
+    public bool showTrails = true;
+    public bool showParticles = true;
 }
 
 [System.Serializable]

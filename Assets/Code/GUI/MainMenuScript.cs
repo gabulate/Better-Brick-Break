@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +19,9 @@ public class MainMenuScript : MonoBehaviour
 
     [Header("Other References")]
     public TextMeshProUGUI statsText;
+    public Slider volumeSlider;
+    public Toggle trailToggle;
+    public Toggle particleToggle;
 
     [Header("Themes")]
     public GameObject themeOptionPrefab;
@@ -45,12 +49,20 @@ public class MainMenuScript : MonoBehaviour
         ShowPage(mainMenu);
         LoadThemes();
         LoadStats();
+        LoadSettings();
+    }
+
+    private void LoadSettings()
+    {
+        volumeSlider.value = SaveSystem.csd.volume;
+        trailToggle.isOn = SaveSystem.csd.showTrails;
+        particleToggle.isOn = SaveSystem.csd.showParticles;
     }
 
     private void LoadStats()
     {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.AppendFormat("Max blocks hit a single ball: {0}\n", SaveSystem.csd.maxHitsBall);
+        stringBuilder.AppendFormat("Max blocks hit by a single ball: {0}\n", SaveSystem.csd.maxHitsBall);
         stringBuilder.AppendFormat("Maximum turns played: {0}\n", SaveSystem.csd.maxTurns);
         stringBuilder.AppendFormat("Maximum balls: {0}\n\n", SaveSystem.csd.maxBalls);
         stringBuilder.Append("Max scores by game mode:\n");
@@ -84,5 +96,28 @@ public class MainMenuScript : MonoBehaviour
         }
 
         //To do: if the player is making a custom game, dont go back all the way
+    }
+
+    public void OpenUrl(string url)
+    {
+        Application.OpenURL(url);
+    }
+
+    public void ChangeVolume(float volume)
+    {
+        SaveSystem.csd.volume = volume;
+        SaveSystem.Save();
+    }
+
+    public void ToggleTrails(bool toggle)
+    {
+        SaveSystem.csd.showTrails = toggle;
+        SaveSystem.Save();
+    }
+
+    public void ToggleParticles(bool toggle)
+    {
+        SaveSystem.csd.showParticles = toggle;
+        SaveSystem.Save();
     }
 }

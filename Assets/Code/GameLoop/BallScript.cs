@@ -31,7 +31,8 @@ public class BallScript : MonoBehaviour
             _sprite.color = AppManager.theme.ballColor;
             _trail.startColor = AppManager.theme.ballColor;
         }
-            
+
+        _trail.enabled = SaveSystem.csd.showTrails;
     }
 
     // Update is called once per frame

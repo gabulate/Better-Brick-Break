@@ -49,11 +49,15 @@ public class Block : MonoBehaviour
     public virtual void BreakBlock()
     {
         GameEvents.e_blockBroke.Invoke(gridPosition[0], gridPosition[1]);
-        var pgo = Instantiate(AssetsHolder.Instance.destroyParticles, transform.position, Quaternion.identity);
-        var p = pgo.GetComponent<ParticleSystem>();
-        ParticleSystem.MainModule main = p.main;
-        main.startColor = _sprite.color;
-        p.Play();
+
+        if (SaveSystem.csd.showParticles)
+        {
+            var pgo = Instantiate(AssetsHolder.Instance.destroyParticles, transform.position, Quaternion.identity);
+            var p = pgo.GetComponent<ParticleSystem>();
+            ParticleSystem.MainModule main = p.main;
+            main.startColor = _sprite.color;
+            p.Play();
+        }
 
         if(AppManager.mode)
             GameManager.Instance.AddScore(1);
