@@ -17,7 +17,7 @@ public class ThemeManager : MonoBehaviour
     private void Start()
     {
         if (AppManager.theme)
-            ThemeManager.Instance.SetTheme(AppManager.theme);
+            SetTheme(AppManager.theme);
     }
 
     public void SetTheme(ThemeSO theme)
@@ -25,7 +25,7 @@ public class ThemeManager : MonoBehaviour
         AppManager.theme = theme;
         AssetsHolder.Instance.bColors = theme.blockColors;
 
-        SaveSystem.csd.theme = theme.name;
+        SaveSystem.csd.theme = theme.theme;
         SaveSystem.Save();
 
         _cam.backgroundColor = theme.backgroundColor;

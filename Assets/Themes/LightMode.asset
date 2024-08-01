@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6efadd566dc5ac9448d34605ad820f23, type: 3}
-  m_Name: Soft
+  m_Name: LightMode
   m_EditorClassIdentifier: 
-  theme: Soft
-  backgroundColor: {r: 0.050980393, g: 0.050980393, b: 0.050980393, a: 1}
-  playAreaColor: {r: 0.1137255, g: 0.1137255, b: 0.1137255, a: 1}
-  borderColor: {r: 1, g: 1, b: 1, a: 1}
+  theme: Light Mode
+  backgroundColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
+  playAreaColor: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
+  borderColor: {r: 0, g: 0, b: 0, a: 1}
   blockColors:
     serializedVersion: 2
-    key0: {r: 0.43454072, g: 0.990566, b: 0.5601321, a: 1}
-    key1: {r: 1, g: 0.85063136, b: 0.18396229, a: 1}
-    key2: {r: 0.9245283, g: 0.34129882, b: 0.3270737, a: 0}
-    key3: {r: 0.80876553, g: 0.32484868, b: 0.9433962, a: 0}
-    key4: {r: 0.2216981, g: 0.38293326, b: 0.8867924, a: 0}
-    key5: {r: 0.43529412, g: 0.99215686, b: 0.56078434, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.17928976, g: 0.745283, b: 0.3068375, a: 1}
+    key1: {r: 0.8773585, g: 0.7193401, b: 0.012415428, a: 1}
+    key2: {r: 0.8207547, g: 0.055390045, b: 0.034843344, a: 0}
+    key3: {r: 0.71166307, g: 0.09620863, b: 0.8867924, a: 0}
+    key4: {r: 0.13363297, g: 0.309486, b: 0.8584906, a: 0}
+    key5: {r: 0.18039216, g: 0.74509805, b: 0.30588236, a: 0}
+    key6: {r: 0.18039216, g: 0.74509805, b: 0.30588236, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 578
     ctime1: 13300
@@ -32,7 +32,7 @@ MonoBehaviour:
     ctime3: 39128
     ctime4: 52814
     ctime5: 65535
-    ctime6: 0
+    ctime6: 65535
     ctime7: 0
     atime0: 0
     atime1: 65535
@@ -46,6 +46,6 @@ MonoBehaviour:
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
   maxColorAt: 64
-  blockSprite: {fileID: 21300000, guid: 6af2ca7314bd588418e941dcdaeda611, type: 3}
+  blockSprite: {fileID: 21300000, guid: 610502eab897c33469bbc3a044966cd6, type: 3}
   blockTextColor: {r: 0, g: 0, b: 0, a: 1}
-  ballColor: {r: 1, g: 1, b: 1, a: 1}
+  ballColor: {r: 0, g: 0, b: 0, a: 1}
