@@ -78,3 +78,7 @@ MonoBehaviour:
   ballPrefab: {fileID: 7739990985551135877, guid: 61505a18e50967448a887e8db8a0f12f, type: 3}
   ballVisual: {fileID: 0}
   destroyParticles: {fileID: 1697995364332602682, guid: bb7bb07b1f3b71e40b1074dbf622d157, type: 3}
+  breakSound: {fileID: 11400000, guid: d818b38e2eade204ebbc0b7a0ba86850, type: 2}
+  wallBounceSound: {fileID: 11400000, guid: 9c6ad7602248d8d468ce791d6a94db9f, type: 2}
+  blockBounceSound: {fileID: 11400000, guid: 94833b64ba9bd25428863fa252cc8d87, type: 2}
+  extraBallSound: {fileID: 11400000, guid: e455a82274238dd4e93210285d370609, type: 2}

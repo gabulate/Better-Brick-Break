@@ -89,7 +89,13 @@ public class BallScript : MonoBehaviour
         if (collision.collider.gameObject.layer == 7)
         {
             blockBounces++;
+            AudioPlayer.Instance.PlaySFX(AssetsHolder.Instance.blockBounceSound);
         }
+        else
+        {
+            AudioPlayer.Instance.PlaySFX(AssetsHolder.Instance.wallBounceSound);
+        }
+
     }
 
     private void UnStick()

@@ -59,6 +59,8 @@ public class Block : MonoBehaviour
             p.Play();
         }
 
+        AudioPlayer.Instance.PlaySFX(AssetsHolder.Instance.breakSound);
+
         if(AppManager.mode)
             GameManager.Instance.AddScore(1);
 

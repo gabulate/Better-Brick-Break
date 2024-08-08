@@ -14,6 +14,11 @@ public class PlayerInput : MonoBehaviour
     private Camera _cam;
 
     [SerializeField]
+    private InputPhase phase = InputPhase.None;
+    [SerializeField]
+    public InputMethod method = InputMethod.Touch;
+
+    [SerializeField]
     private Transform stick;
 
     // Start is called before the first frame update
@@ -26,64 +31,29 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.canThrow)
-        {
-            CheckClick();
-            CheckTouch();
-        }
+        CheckClick();
+        CheckTouch();
+
+        CheckDirection();
     }
 
-    private void CheckClick()
+    public void CheckDirection()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) //If clicked a UI element
-            return;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (phase == InputPhase.Started)
         {
-                // Record the starting touch position
-                startTouchPosition = _cam.ScreenToWorldPoint(Input.mousePosition);
-        }
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            // Record the ending touch position
-            endTouchPosition = _cam.ScreenToWorldPoint(Input.mousePosition);
-
-            // Calculate the throw direction and force
-            throwDirection = startTouchPosition - endTouchPosition;
-            throwDirection.Normalize();
-
-            //Checks if pointing downwards, and clamps it to either side
-            if (throwDirection.y <= 0.1)
+            if (BallThrower.isThrowing)
             {
-                throwDirection.y = 0.1f;
-                throwDirection.x = throwDirection.x > 0 ? 0.9f : -0.9f;
+                Time.timeScale = 2;
             }
-                
-
-            RotateStick(throwDirection);
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        else if (phase == InputPhase.Held)
         {
-            BallThrower.Instance.StartThrowing(throwDirection);           
-        }
-    }
-
-    private void CheckTouch()
-    {
-        // Check for touch input
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
+            if(startTouchPosition == endTouchPosition)
             {
-                // Record the starting touch position
-                startTouchPosition = touch.position;
+                throwDirection = Vector2.up;
             }
-            if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+            else
             {
-                // Record the ending touch position
-                endTouchPosition = touch.position;
-
                 // Calculate the throw direction and force
                 throwDirection = startTouchPosition - endTouchPosition;
                 throwDirection.Normalize();
@@ -94,25 +64,77 @@ public class PlayerInput : MonoBehaviour
                     throwDirection.y = 0.1f;
                     throwDirection.x = throwDirection.x > 0 ? 0.9f : -0.9f;
                 }
+            }
 
-                RotateStick(throwDirection);
-            }
-            else if (touch.phase == TouchPhase.Ended)
-            {
+            RotateStick(throwDirection);
+        }
+        if (phase == InputPhase.Ended)
+        {
+            if (GameManager.canThrow && Time.timeScale == 1)
                 BallThrower.Instance.StartThrowing(throwDirection);
-            }
+            Time.timeScale = 1;
+            throwDirection = Vector2.up;
         }
     }
 
-    public bool CheckUITouch()
+    private void CheckClick()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject()) //If clicked a UI element
+                return;
+
+            phase = InputPhase.Started;
+            method = InputMethod.Mouse;
+
+            startTouchPosition = _cam.ScreenToWorldPoint(Input.mousePosition);
+        }
+        else if (Input.GetKey(KeyCode.Mouse0))
+        {
+            phase = InputPhase.Held;
+            endTouchPosition = _cam.ScreenToWorldPoint(Input.mousePosition);
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            phase = InputPhase.Ended;
+        }
+        else if (method == InputMethod.Mouse)
+        {
+            phase = InputPhase.None;
+        }
+    }
+
+
+    private void CheckTouch()
+    {
+        // Check for touch input
         if (Input.touchCount > 0)
         {
-            var touchPosition = Input.GetTouch(0).position;
-            Debug.Log(touchPosition.y > 1000);
-            return touchPosition.y > 1000;
+            Touch touch = Input.GetTouch(0);
+            method = InputMethod.Touch;
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (EventSystem.current.IsPointerOverGameObject(touch.fingerId)) //If clicked a UI element
+                    return;
+
+                phase = InputPhase.Started;
+                startTouchPosition = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+            {
+                phase = InputPhase.Held;
+                endTouchPosition = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                phase = InputPhase.Ended;
+            }
         }
-        return false;
+        else if (method == InputMethod.Touch)
+        {
+            phase = InputPhase.None;
+        }
     }
 
     private void RotateStick(Vector2 direction)
@@ -131,7 +153,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnStopRecalling()
     {
-        if(!GameManager.gameLost)
+        if (!GameManager.gameLost)
             StartCoroutine(EnableStick(0.5f));
     }
 
@@ -152,4 +174,14 @@ public class PlayerInput : MonoBehaviour
         GameEvents.e_StartedThrowing.RemoveListener(DisableStick);
         GameEvents.e_StoppedRecalling.RemoveListener(OnStopRecalling);
     }
+}
+
+public enum InputPhase
+{
+    Started, Held, Ended, None
+}
+
+public enum InputMethod
+{
+    Mouse, Touch
 }

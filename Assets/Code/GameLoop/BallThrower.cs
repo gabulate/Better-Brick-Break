@@ -69,6 +69,7 @@ public class BallThrower : MonoBehaviour
         GameEvents.e_StartedThrowing.Invoke(currentBalls);
 
         GameManager.canThrow = false;
+        isThrowing = true;
     }
 
     private IEnumerator ThrowBalls(Vector2 direction, Vector3 position)
@@ -97,6 +98,8 @@ public class BallThrower : MonoBehaviour
     {
         if(!GameManager.gameLost)
             StartCoroutine(EnableThrowingCoroutine(0.5f));
+
+        isThrowing = false;
     }
 
     private IEnumerator EnableThrowingCoroutine(float seconds)

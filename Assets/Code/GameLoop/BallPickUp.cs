@@ -18,6 +18,7 @@ public class BallPickUp : Block
     public override void BreakBlock()
     {
         GameEvents.e_blockBroke.Invoke(gridPosition[0], gridPosition[1]);
+        AudioPlayer.Instance.PlaySFX(AssetsHolder.Instance.extraBallSound);
         Destroy(gameObject);
     }
 

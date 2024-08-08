@@ -58,29 +58,29 @@
   <ItemGroup>
     <Compile Include="Assets\Code\GameLoop\AssetsHolder.cs" />
     <Compile Include="Assets\Code\GameLoop\BallPickUp.cs" />
+    <Compile Include="Assets\Code\AppManagers\SoundObject.cs" />
+    <Compile Include="Assets\Code\GameLoop\PlayerInput.cs" />
     <Compile Include="Assets\Code\AppManagers\SaveSystem.cs" />
+    <Compile Include="Assets\Code\ScriptableObjects\GameModeSO.cs" />
     <Compile Include="Assets\Code\Helpers\Helper.cs" />
+    <Compile Include="Assets\Code\Visual Effects\MainMenuBlockSpawner.cs" />
     <Compile Include="Assets\Code\GameLoop\BallThrower.cs" />
+    <Compile Include="Assets\Code\GameLoop\RecallArea.cs" />
     <Compile Include="Assets\Code\Visual Effects\ThemeManager.cs" />
+    <Compile Include="Assets\Code\ScriptableObjects\ThemeSO.cs" />
+    <Compile Include="Assets\Code\GUI\MainMenuScript.cs" />
     <Compile Include="Assets\Code\GUI\GameUI.cs" />
     <Compile Include="Assets\Code\GameLoop\GameManager.cs" />
+    <Compile Include="Assets\Code\AppManagers\AudioPlayer.cs" />
+    <Compile Include="Assets\Code\AppManagers\AppManager.cs" />
     <Compile Include="Assets\Code\ScriptableObjects\AppAssetsSO.cs" />
     <Compile Include="Assets\Code\GameLoop\BlockGrid.cs" />
+    <Compile Include="Assets\Code\AppManagers\SoundClip.cs" />
     <Compile Include="Assets\Code\GameLoop\BallScript.cs" />
     <Compile Include="Assets\Code\GUI\ThemeOption.cs" />
     <Compile Include="Assets\Code\GameLoop\GameEvents.cs" />
     <Compile Include="Assets\Code\GameLoop\Block.cs" />
-    <Compile Include="Assets\Code\GameLoop\PlayerInput.cs" />
-    <Compile Include="Assets\Code\ScriptableObjects\GameModeSO.cs" />
-    <Compile Include="Assets\Code\Visual Effects\MainMenuBlockSpawner.cs" />
-    <Compile Include="Assets\Code\GameLoop\RecallArea.cs" />
-    <Compile Include="Assets\Code\ScriptableObjects\ThemeSO.cs" />
-    <Compile Include="Assets\Code\GUI\MainMenuScript.cs" />
-    <Compile Include="Assets\Code\AppManagers\AppManager.cs" />
     <Compile Include="Assets\Code\AppManagers\SaveData.cs" />
-    <Compile Include="Assets\Code\AppManagers\SoundObject.cs" />
-    <Compile Include="Assets\Code\AppManagers\AudioPlayer.cs" />
-    <Compile Include="Assets\Code\AppManagers\SoundClip.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -772,23 +772,23 @@
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Path.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+    <Reference Include="Unity.2D.Path.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
