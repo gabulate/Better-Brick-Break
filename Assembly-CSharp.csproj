@@ -81,6 +81,7 @@
     <Compile Include="Assets\Code\GameLoop\GameEvents.cs" />
     <Compile Include="Assets\Code\GameLoop\Block.cs" />
     <Compile Include="Assets\Code\AppManagers\SaveData.cs" />
+    <Compile Include="Assets\Code\GUI\MyStoreListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -357,6 +358,9 @@
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Rocks">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.18f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -822,6 +826,36 @@
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Purchasing.Common">
+      <HintPath>Library\ScriptAssemblies\Purchasing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing.SecurityStub">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityStub.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Services.Core.Analytics">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing.Codeless">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Codeless.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Services.Core">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing.SecurityCore">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Services.Core.Environments">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing.Stores">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Stores.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

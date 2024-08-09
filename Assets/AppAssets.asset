@@ -27,3 +27,6 @@ MonoBehaviour:
   gameModes:
   - {fileID: 11400000, guid: 1f3188c662175dc438cbad4fc5145111, type: 2}
   - {fileID: 11400000, guid: 164a33d3a3c770348bc2864a63ca898e, type: 2}
+  - {fileID: 11400000, guid: 869325e0b43abb84ca15b703d1a64907, type: 2}
+  - {fileID: 11400000, guid: a499841807467fd4dbe4516d67e1c917, type: 2}
+  - {fileID: 11400000, guid: 872356cd951663043b4d195621357364, type: 2}

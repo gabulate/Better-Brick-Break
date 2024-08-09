@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Purchasing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -50,6 +51,11 @@ public class MainMenuScript : MonoBehaviour
         LoadThemes();
         LoadStats();
         LoadSettings();
+    }
+
+    public void Donate()
+    {
+        AppManager.Instance.GetComponent<MyStoreListener>().Donate();
     }
 
     private void LoadSettings()
