@@ -72,7 +72,10 @@ public class PlayerInput : MonoBehaviour
         {
             if (GameManager.canThrow && Time.timeScale == 1)
                 BallThrower.Instance.StartThrowing(throwDirection);
-            Time.timeScale = 1;
+
+            if (!GameManager.gamePaused)
+                Time.timeScale = 1;
+
             throwDirection = Vector2.up;
         }
     }

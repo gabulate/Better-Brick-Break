@@ -133,6 +133,22 @@ public class BlockGrid : MonoBehaviour
         }
     }
 
+    public bool IsEmpty()
+    {
+        for (int i = 0; i < hSize; i++)
+        {
+            for (int j = 0; j < vSize; j++)
+            {
+                if(IsCellOcuppied(i, j))
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     private void MoveFinalBlocksDown()
     {
         for (int i = 0; i < hSize; i++)

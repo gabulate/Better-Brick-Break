@@ -14,6 +14,7 @@ public static class GameEvents
     public static UnityEvent<int> e_maxScoreChanged = new UnityEvent<int>();
     public static UnityEvent<int> e_lastScoreChanged = new UnityEvent<int>();
     public static UnityEvent<bool> e_gamePaused = new UnityEvent<bool>();
+    public static UnityEvent e_allClear = new UnityEvent();
 
     public static UnityEvent<ThemeSO> e_themeChanged = new UnityEvent<ThemeSO>();
 }

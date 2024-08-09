@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Transform RecallArea;
 
     [Header("Game")]
+    public static bool gamePaused = false;
     public string gameMode;
     public static bool gameLost = false;
     public static bool canThrow = true;
@@ -50,8 +51,10 @@ public class GameManager : MonoBehaviour
 
     private void ResetStats()
     {
+        gamePaused = false;
         gameLost = false;
         canThrow = true;
+        BallThrower.isThrowing = false;
         maxBlockValue = initialMaxBlockValue;
         score = 0;
         maxHitsBall = 0;
@@ -76,14 +79,25 @@ public class GameManager : MonoBehaviour
 
     private void OnStoppedRecalling()
     {
+        //Check if its empty and show all clear text
+        if (BlockGrid.Instance.IsEmpty())
+        {
+            GameEvents.e_allClear.Invoke();
+            AddScore(5);
+        }
+
+        //Move blocks and spawn new row
         BlockGrid.Instance.MoveBlocksDown();
         BlockGrid.Instance.SpawnRow((int)maxBlockValue, maxBlocksPerRow);
 
+        //Increase the maximum allowed block value according to the difficulty scaling
         maxBlockValue += difficultyScaling;
 
+        //Add the extra balls collected in this turn
         BallThrower.Instance.currentBalls += extraBallsNextTurn;
         extraBallsNextTurn = 0;
 
+        //Check and save high scores
         if(BallThrower.Instance.currentBalls > SaveSystem.csd.maxBalls)
         {
             SaveSystem.csd.maxBalls = BallThrower.Instance.currentBalls;
@@ -167,6 +181,7 @@ public class GameManager : MonoBehaviour
 
     private void OnGamePaused(bool paused)
     {
+        gamePaused = paused;
         if (paused)
             Time.timeScale = 0;
         else

@@ -46,11 +46,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playArea: {fileID: 0}
   gridSize: {x: 6, y: 6}
+  RecallArea: {fileID: 0}
+  gameMode: Default
   maxBlockValue: 2
   initialMaxBlockValue: 2
-  difficultyScaling: 1
-  maxBlocksPerRow: 3
+  difficultyScaling: 1.2
+  maxBlocksPerRow: 1
   score: 0
+  turns: 0
   maxScore: 0
-  extraBallChance: 0.571
+  maxHitsBall: 0
+  extraBallChance: 0.7
   extraBallsNextTurn: 0

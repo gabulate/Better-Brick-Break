@@ -8180,7 +8180,7 @@ MonoBehaviour:
   PoolLenght: 10
   Expandable: 1
   maximumSounds: 500
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 3918107925936058387, guid: 423a2aac58807a44882df419fecaa3a0, type: 3}
 --- !u!4 &1844682864
 Transform:
   m_ObjectHideFlags: 0

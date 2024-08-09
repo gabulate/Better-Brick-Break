@@ -11,6 +11,7 @@ public class GameUI : MonoBehaviour
     public TextMeshProUGUI lastScoreText;
     public GameObject pauseMenu;
     public GameObject gameOverModal;
+    public GameObject allClearText;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class GameUI : MonoBehaviour
     public void Retry() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     public void ShowGameOverModal() => gameOverModal.GetComponent<Animator>().SetTrigger("show");
+    public void ShowAllClearText() => allClearText.GetComponent<Animator>().SetTrigger("show");
 
     public void ShowPauseMenu(bool enabled)
     {
@@ -51,6 +53,7 @@ public class GameUI : MonoBehaviour
         GameEvents.e_lastScoreChanged.AddListener(UpdateLastScore);
         GameEvents.e_maxScoreChanged.AddListener(UpdateMaxScore);
         GameEvents.e_gameLost.AddListener(ShowGameOverModal);
+        GameEvents.e_allClear.AddListener(ShowAllClearText);
     }
 
     private void OnDisable()
@@ -59,5 +62,6 @@ public class GameUI : MonoBehaviour
         GameEvents.e_lastScoreChanged.RemoveListener(UpdateLastScore);
         GameEvents.e_maxScoreChanged.RemoveListener(UpdateMaxScore);
         GameEvents.e_gameLost.RemoveListener(ShowGameOverModal);
+        GameEvents.e_allClear.RemoveListener(ShowAllClearText);
     }
 }

@@ -252,6 +252,6 @@ MonoBehaviour:
   totalPooledBalls: 0
   initialBalls: 1
   Expandable: 1
-  maximumLenght: 99999
+  maximumLenght: 999999999
   enabledBalls: 0
-  secsBetween: 0.15
+  secsBetween: 0.1
