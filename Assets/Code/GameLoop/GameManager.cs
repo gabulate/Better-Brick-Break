@@ -23,15 +23,15 @@ public class GameManager : MonoBehaviour
     public int maxBlocksPerRow = 4;
     
     [Header("Stats")]
-    public int score = 0;
-    public int turns = 0;
-    public int maxScore = 0;
-    public int maxHitsBall = 0;
+    public uint score = 0;
+    public uint turns = 0;
+    public uint maxScore = 0;
+    public uint maxHitsBall = 0;
 
     [Range(0, 1)]
     public float extraBallChance = 0.3f;
 
-    public int extraBallsNextTurn = 0;
+    public uint extraBallsNextTurn = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         SaveSystem.Save();
     }
 
-    public void AddScore(int score)
+    public void AddScore(uint score)
     {
         this.score += score;
         GameEvents.e_scoreChanged.Invoke(this.score);
@@ -125,9 +125,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CheckMaxHits(int hits)
+    public void CheckMaxHits(uint hits)
     {
-        maxHitsBall = Mathf.Max(maxHitsBall, hits);
+        maxHitsBall = (uint)Mathf.Max(maxHitsBall, hits);
 
         if (maxHitsBall > SaveSystem.csd.maxHitsBall)
         {
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         canThrow = false;
     }
 
-    private void OnStartedThrowing(int arg0)
+    private void OnStartedThrowing(uint arg0)
     {
         turns++;
 

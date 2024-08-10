@@ -41,11 +41,11 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void UpdateScore(int score) => scoreText.text = score.ToString();
+    public void UpdateScore(uint score) => scoreText.text = score.ToString();
 
-    public void UpdateMaxScore(int score) => maxScoreText.text = score.ToString();
+    public void UpdateMaxScore(uint score) => maxScoreText.text = score.ToString();
 
-    public void UpdateLastScore(int score) => lastScoreText.text = score.ToString();
+    public void UpdateLastScore(uint score) => lastScoreText.text = score.ToString();
 
     private void OnEnable()
     {

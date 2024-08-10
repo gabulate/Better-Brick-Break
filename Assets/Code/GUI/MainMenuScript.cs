@@ -42,6 +42,7 @@ public class MainMenuScript : MonoBehaviour
     public void Play(GameModeSO mode)
     {
         AppManager.mode = mode;
+        SaveSystem.csd.gamesPlayed++;
         SceneManager.LoadScene("Game");
     }
 

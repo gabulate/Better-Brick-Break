@@ -9,7 +9,7 @@ public class RecallArea : MonoBehaviour
     public bool isRecalling = false;
     public bool firstBallRecalled = false;
     public float newPosition = 0;
-    private int totalBalls = 0;
+    private uint totalBalls = 0;
     public int currentRecalledBalls = 0;
 
     private void Start()
@@ -45,7 +45,7 @@ public class RecallArea : MonoBehaviour
         GameEvents.e_StoppedRecalling.Invoke();
     }
 
-    private void StartRecalling(int totalBalls)
+    private void StartRecalling(uint totalBalls)
     {
         isRecalling = true;
         firstBallRecalled = false;

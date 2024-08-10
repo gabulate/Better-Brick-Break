@@ -9,14 +9,14 @@ public class BallThrower : MonoBehaviour
     public static BallThrower Instance;
     public TextMeshPro ballsText;
     public static bool isThrowing = false;
-    public int currentBalls = 1;
-    public int remainingBalls = 1;
+    public uint currentBalls = 1;
+    public uint remainingBalls = 1;
 
-    public int totalPooledBalls = 0;
-    public int initialBalls = 20;
+    public uint totalPooledBalls = 0;
+    public uint initialBalls = 20;
     public bool Expandable = false;
-    public int maximumLenght = 30;
-    public int enabledBalls = 0;
+    public uint maximumLenght = 30;
+    public uint enabledBalls = 0;
 
     public static List<BallScript> balls = new List<BallScript>();
     public float secsBetween = 0.1f;

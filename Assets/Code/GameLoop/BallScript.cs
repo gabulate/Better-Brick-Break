@@ -11,7 +11,7 @@ public class BallScript : MonoBehaviour
     [SerializeField]
     private Vector2 direction;
     private Vector3 lastPos;
-    public int blockBounces = 0;
+    public uint blockBounces = 0;
 
     [SerializeField]
     private float counter = 0.1f;

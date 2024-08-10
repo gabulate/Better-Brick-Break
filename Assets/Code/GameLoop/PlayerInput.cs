@@ -149,7 +149,7 @@ public class PlayerInput : MonoBehaviour
         stick.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    private void DisableStick(int balls)
+    private void DisableStick(uint balls)
     {
         stick.gameObject.SetActive(false);
     }
