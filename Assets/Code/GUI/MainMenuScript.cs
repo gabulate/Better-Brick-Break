@@ -69,6 +69,10 @@ public class MainMenuScript : MonoBehaviour
     private void LoadStats()
     {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.AppendFormat("Total matches played: {0}\n", SaveSystem.csd.gamesPlayed);
+        stringBuilder.AppendFormat("Total turns played: {0}\n", SaveSystem.csd.turnsPlayed);
+        stringBuilder.AppendFormat("Total balls thrown: {0}\n", SaveSystem.csd.ballsThrown);
+        stringBuilder.AppendFormat("Total blocks broken: {0}\n", SaveSystem.csd.brokenBlocks);
         stringBuilder.AppendFormat("Max blocks hit by a single ball: {0}\n", SaveSystem.csd.maxHitsBall);
         stringBuilder.AppendFormat("Maximum turns played: {0}\n", SaveSystem.csd.maxTurns);
         stringBuilder.AppendFormat("Maximum balls: {0}\n\n", SaveSystem.csd.maxBalls);

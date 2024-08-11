@@ -91,7 +91,7 @@ public class BallThrower : MonoBehaviour
 
             yield return new WaitForSeconds(secsBetween);
         }
-
+        SaveSystem.csd.ballsThrown += currentBalls;
     }
 
     private void EnableThrowing()

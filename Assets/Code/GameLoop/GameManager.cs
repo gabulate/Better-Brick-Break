@@ -103,6 +103,8 @@ public class GameManager : MonoBehaviour
             SaveSystem.csd.maxBalls = BallThrower.Instance.currentBalls;
         }
 
+        SaveSystem.csd.turnsPlayed++;
+
         SaveSystem.Save();
     }
 

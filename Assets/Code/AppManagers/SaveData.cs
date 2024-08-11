@@ -5,6 +5,9 @@ using UnityEngine;
 public class SaveData
 {
     public uint gamesPlayed = 0;
+    public uint turnsPlayed = 0;
+    public uint ballsThrown = 0;
+    public uint brokenBlocks = 0;
     public uint maxScore = 0;
     public uint lastScore = 0;
     public uint maxHitsBall = 0; //Ball with the most block hits in a single turn

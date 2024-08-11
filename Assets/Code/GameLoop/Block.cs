@@ -61,8 +61,11 @@ public class Block : MonoBehaviour
 
         AudioPlayer.Instance.PlaySFX(AssetsHolder.Instance.breakSound);
 
-        if(AppManager.mode)
+        if (AppManager.mode)
+        {
+            SaveSystem.csd.brokenBlocks++;
             GameManager.Instance.AddScore(1);
+        }
 
         Destroy(gameObject);
     }
