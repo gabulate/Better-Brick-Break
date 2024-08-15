@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5a2d12b550f4aa49bada3636b692002, type: 3}
-  m_Name: 10x15
+  m_Name: 12x16
   m_EditorClassIdentifier: 
   gameMode: Big (10x15)
-  gridSize: {x: 10, y: 15}
+  gridSize: {x: 12, y: 16}
   initialMaxBlockValue: 2
   difficultyScaling: 1.3
   maxBlocksPerRow: 9

@@ -387,7 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5770792085754771190, guid: 29b1fb1b6902f9c42b1f056cc8910c59, type: 3}
       propertyPath: m_text
-      value: Play in a big 10x15 grid.
+      value: Play in a big 12x16 grid.
       objectReference: {fileID: 0}
     - target: {fileID: 5770792086830789633, guid: 29b1fb1b6902f9c42b1f056cc8910c59, type: 3}
       propertyPath: m_Pivot.x
@@ -4195,7 +4195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 312.1215, y: -164.49281}
+  m_AnchoredPosition: {x: 312.1215, y: -157.76021}
   m_SizeDelta: {x: 449.0875, y: 63.0662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &862929106
@@ -4930,7 +4930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 312.1215, y: -406.2534}
+  m_AnchoredPosition: {x: 312.1215, y: -390.54398}
   m_SizeDelta: {x: 449.0875, y: 63.0662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &933976994
@@ -4986,7 +4986,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: https://gabulate.itch.io/ball-brick-breaker
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &933976995
@@ -5066,8 +5066,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 329.78787}
-  m_SizeDelta: {x: -95.757, y: 461.0843}
+  m_AnchoredPosition: {x: 0, y: 320.81107}
+  m_SizeDelta: {x: -95.757, y: 443.1307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &939228444
 MonoBehaviour:
@@ -6188,8 +6188,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -401}
-  m_SizeDelta: {x: -95.7571, y: 412.44568}
+  m_AnchoredPosition: {x: 0, y: -357.22}
+  m_SizeDelta: {x: -95.7571, y: 324.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1247667309
 MonoBehaviour:
@@ -6211,7 +6211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ball Brick Break
+  m_text: 'Ball Brick Break 1.0
 
 
     Made by
@@ -9024,7 +9024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 312.12146, y: -285.37308}
+  m_AnchoredPosition: {x: 312.1215, y: -274.1521}
   m_SizeDelta: {x: 449.09, y: 85.503}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1928988521
@@ -9162,7 +9162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 312.1215, y: -54.830936}
+  m_AnchoredPosition: {x: 312.1215, y: -52.58674}
   m_SizeDelta: {x: 449.0875, y: 63.0662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1940881571
@@ -9403,6 +9403,10 @@ PrefabInstance:
     - target: {fileID: 4834334892479078943, guid: 29b1fb1b6902f9c42b1f056cc8910c59, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: GameModeSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770792085754771190, guid: 29b1fb1b6902f9c42b1f056cc8910c59, type: 3}
+      propertyPath: m_text
+      value: Play with the classic settings. 8x10 grid.
       objectReference: {fileID: 0}
     - target: {fileID: 5770792086830789633, guid: 29b1fb1b6902f9c42b1f056cc8910c59, type: 3}
       propertyPath: m_Pivot.x

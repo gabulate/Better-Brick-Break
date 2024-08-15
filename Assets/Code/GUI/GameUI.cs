@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI maxScoreText;
     public TextMeshProUGUI lastScoreText;
+    public List<TextMeshProUGUI> labels;
     public GameObject pauseMenu;
+    public Image pauseButton;
     public GameObject gameOverModal;
     public GameObject allClearText;
 
@@ -19,6 +22,19 @@ public class GameUI : MonoBehaviour
         UpdateScore(0);
         UpdateLastScore(SaveSystem.csd.lastScore);
         UpdateMaxScore(SaveSystem.csd.maxScores.Get(AppManager.mode.gameMode));
+
+        if (AppManager.theme)
+        {
+            scoreText.color = AppManager.theme.ballColor;
+            maxScoreText.color = AppManager.theme.ballColor;
+            lastScoreText.color = AppManager.theme.ballColor;
+            pauseButton.color = AppManager.theme.ballColor;
+
+            foreach(var label in labels)
+            {
+                label.color = AppManager.theme.ballColor;
+            }
+        }
     }
 
     public void ReturnToMenu()
